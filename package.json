@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "wasm-opt": "^1.3.0"
+  },
+  "scripts": {
+    "build": "cross-env RUSTFLAGS=\"-C target-feature=+atomics,+bulk-memory,+mutable-globals,+simd128\" rustup run nightly-2022-04-07 wasm-pack build . --target web --out-dir ../my-app/src/pkg-parallel -- -Z build-std=panic_abort,std",
+    "test": "cross-env RUSTFLAGS=\"-C target-feature=+atomics,+bulk-memory,+mutable-globals,+simd128\" rustup run nightly-2022-04-07 wasm-pack test --chrome -- -Z build-std=panic_abort,std",
+    "test:headless": "cross-env RUSTFLAGS=\"-C target-feature=+atomics,+bulk-memory,+mutable-globals,+simd128\" rustup run nightly-2022-04-07 wasm-pack test --headless --chrome -- -Z build-std=panic_abort,std",
+    "build:here": "cross-env RUSTFLAGS=\"-C target-feature=+atomics,+bulk-memory,+mutable-globals,+simd128\" rustup run nightly-2022-04-07 wasm-pack build . --target web --out-dir ./pkg-parallel -- -Z build-std=panic_abort,std"
+  }
+}
